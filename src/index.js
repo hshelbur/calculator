@@ -9,10 +9,27 @@ const initialState = {
 	previousValue: 0,
 }
 
+function calculate(currentValue, previousValue, operator) {
+	switch (operator) {
+		case `+`:
+			return previousValue + currentValue
+		case `-`:
+			return previousValue - currentValue
+		case `*`:
+			return previousValue * currentValue
+		case `/`:
+			return previousValue / currentValue
+		default:
+			return currentValue
+	}
+}
+
 // actions
 
 const CLEAR = `CLEAR`
 const ENTER_NUMBER = `ENTER_NUMBER`
+const EVALUATE = `EVALUATE`
+const SET_OPERATOR = `SET_OPERATOR`
 
 function clear() {
 	return {type: CLEAR, data: {}}
@@ -20,6 +37,14 @@ function clear() {
 
 function enterNumber(number) { 
 	return {type: ENTER_NUMBER, data: {number}}
+}
+
+function evalute() {
+	return {type: EVALUATE, data: {}}
+}
+
+function setOperator(operator) {
+	return {type: SET_OPERATOR, data: {operator}}
 }
 
 // reducers
@@ -30,6 +55,10 @@ function calculator(state = initialState, action) {
 			return initialState
 		case ENTER_NUMBER:
 			return state.currentValue === "0" ? {...state, currentValue: action.data.number} : {...state, currentValue: state.currentValue + action.data.number}
+		case SET_OPERATOR:
+			return {currentValue: '0', operator: action.data.operator, previousValue: state.currentValue}
+		case EVALUATE:
+			return {...initialState, currentValue: calculate(state.currentValue, state.previousValue, state.operator)}
 		default:
 			return state
 	}
@@ -51,6 +80,12 @@ const App = ({currentValue, operator, previousValue, dispatch}) =>
 		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={8}>8</button>
 		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={9}>9</button>
 		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={0}>0</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={`.`}>.</button>
+		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`+`}>+</button>
+		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`-`}>-</button>
+		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`*`}>*</button>
+		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`/`}>/</button>
+		<button onClick={(e) => dispatch(evalute())}>=</button>
 		<button onClick={() => dispatch(clear())}>C</button>
 	</React.Fragment>
 
