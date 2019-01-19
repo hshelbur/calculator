@@ -3,6 +3,8 @@ import ReactDOM from "react-dom"
 import {createStore} from 'redux'
 import {Provider, connect} from 'react-redux'
 
+import './_styles.css'
+
 const initialState = {
 	currentValue: "0",
 	operator: null,
@@ -67,27 +69,31 @@ function calculator(state = initialState, action) {
 const store = createStore(calculator)
 
 const App = ({currentValue, operator, previousValue, dispatch}) => 
-	<React.Fragment>
-		<h1>Howard Instruments 2019</h1>
-		<h2>{currentValue}</h2>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={1}>1</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={2}>2</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={3}>3</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={4}>4</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={5}>5</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={6}>6</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={7}>7</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={8}>8</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={9}>9</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={0}>0</button>
-		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={`.`}>.</button>
-		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`+`}>+</button>
-		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`-`}>-</button>
-		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`*`}>*</button>
-		<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`/`}>/</button>
-		<button onClick={(e) => dispatch(evalute())}>=</button>
-		<button onClick={() => dispatch(clear())}>C</button>
-	</React.Fragment>
+	<main className="calculator">
+		<h1 className="header">Howard Instruments 2019</h1>
+		<h2 className="value">{currentValue}</h2>
+		<section className="number">
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={1}>1</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={2}>2</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={3}>3</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={4}>4</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={5}>5</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={6}>6</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={7}>7</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={8}>8</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={9}>9</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={0}>0</button>
+			<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={`.`}>.</button>
+		</section>
+		<section className="operator">
+			<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`+`}>+</button>
+			<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`-`}>-</button>
+			<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`*`}>*</button>
+			<button onClick={(e) => dispatch(setOperator(e.target.value))} value={`/`}>/</button>
+			<button onClick={(e) => dispatch(evalute())}>=</button>
+			<button onClick={() => dispatch(clear())}>C</button>
+		</section>
+	</main>
 
 function mapStateToProps(state) {
 	return state

@@ -1,0 +1,27 @@
+.header {
+    grid-area: hd;
+}
+.value {
+    grid-area: val;
+    text-align: right;
+    border: solid 1px gray;
+    padding: 2px;
+}
+.number {
+    grid-area: num;
+}
+.operator {
+    grid-area: op;
+}
+
+.calculator {
+    display: grid;
+    grid-template-areas: 
+      "hd hd"
+      "val val"
+      "num op"
+      "num op"
+      "num op"
+      "num op";
+    grid-template-columns: 70px 30px;
+}
