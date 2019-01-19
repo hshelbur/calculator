@@ -42,6 +42,16 @@ const App = ({currentValue, operator, previousValue, dispatch}) =>
 		<h1>Howard Instruments 2019</h1>
 		<h2>{currentValue}</h2>
 		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={1}>1</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={2}>2</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={3}>3</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={4}>4</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={5}>5</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={6}>6</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={7}>7</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={8}>8</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={9}>9</button>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={0}>0</button>
+		<button onClick={() => dispatch(clear())}>C</button>
 	</React.Fragment>
 
 function mapStateToProps(state) {
