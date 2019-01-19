@@ -56,9 +56,9 @@ function calculator(state = initialState, action) {
 		case ENTER_NUMBER:
 			return state.currentValue === "0" ? {...state, currentValue: action.data.number} : {...state, currentValue: state.currentValue + action.data.number}
 		case SET_OPERATOR:
-			return {currentValue: '0', operator: action.data.operator, previousValue: state.currentValue}
+			return {currentValue: '0', operator: action.data.operator, previousValue: state.operator ? calculate(parseFloat(state.currentValue), state.previousValue, state.operator).toString() : parseFloat(state.currentValue)}
 		case EVALUATE:
-			return {...initialState, currentValue: calculate(state.currentValue, state.previousValue, state.operator)}
+			return {...initialState, currentValue: calculate(parseFloat(state.currentValue), state.previousValue, state.operator).toString()}
 		default:
 			return state
 	}
