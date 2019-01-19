@@ -37,10 +37,11 @@ function calculator(state = initialState, action) {
 
 const store = createStore(calculator)
 
-const App = ({currentValue, operator, previousValue}) => 
+const App = ({currentValue, operator, previousValue, dispatch}) => 
 	<React.Fragment>
 		<h1>Howard Instruments 2019</h1>
 		<h2>{currentValue}</h2>
+		<button onClick={(e) => dispatch(enterNumber(e.target.value))} value={1}>1</button>
 	</React.Fragment>
 
 function mapStateToProps(state) {
